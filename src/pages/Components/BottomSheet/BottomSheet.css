@@ -23,13 +23,18 @@
 .bottomsheet__content {
   display: flex;
   flex-direction: row;
+  padding-bottom: 10px;
 }
 .bottomsheet__content__section1 {
   flex-grow: 1;
-  padding: 10px;
+  padding: 10px 0 0 30px;
 }
 .bottomsheet__content__section2 {
   flex-grow: 1;
+  padding: 10px;
+}
+.bottomsheet__content__section3 {
+  flex-grow: 2;
   padding: 10px;
 }
 .bottomsheet__verticalline {
@@ -37,4 +42,16 @@
   max-height: 100vh;
   min-height: 100%;
   color: black;
+}
+.bottomsheet__dualinput {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+}
+.bottomsheet__icons {
+  font-size: 34px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #ccc;
 }
