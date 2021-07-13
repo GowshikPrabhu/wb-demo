@@ -8,13 +8,19 @@ import "./DropdownInput.css";
  * @param {object[]} options Options for dropdown
  * @returns
  */
-const DropdownInput = ({ label = "", name, options }) => {
+const DropdownInput = ({ label = "", name, options, value, onChange }) => {
   return (
     <>
       {label.length > 0 ? (
         <label className="dropdown__label">{label}</label>
       ) : null}
-      <select name={name} id={name} className="dropdown__select">
+      <select
+        name={name}
+        id={name}
+        className="dropdown__select"
+        value={value}
+        onChange={onChange}
+      >
         {options.map((option, idx) => (
           <option key={idx} value={option.value}>
             {option.name}

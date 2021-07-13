@@ -12,8 +12,10 @@ import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
 const BottomSheet = () => {
   const [noOfParameters, setNoOfParameters] = useState(1);
   const [actionsBar, toogleActionsBar] = useState(true);
+  const [apiResource, setAPIResource] = useState("REST");
   const [restAPIFormData, setRestAPIFormData] = useState({
     requestUrl: "",
+    requestMethod: "GET",
     requestData: "",
     urlparameters: [{ key: "", value: "" }]
   });
@@ -39,6 +41,12 @@ const BottomSheet = () => {
       arrCopy[noOfParameters - 1].value = e.target.value;
       setRestAPIFormData((prevState) => {
         return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    } else if (inputName === "resource") {
+      setAPIResource(e.target.value);
+    } else if (inputName === "method") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestMethod: e.target.value };
       });
     }
   };
@@ -81,6 +89,8 @@ const BottomSheet = () => {
                   { name: "REST API", value: "REST" },
                   { name: "SOAP", value: "SOAP" }
                 ]}
+                value={apiResource}
+                onChange={handleChange}
               />
               <br />
               <br />
@@ -92,6 +102,8 @@ const BottomSheet = () => {
                     { name: "GET", value: "GET" },
                     { name: "POST", value: "POST" }
                   ]}
+                  value={restAPIFormData.requestMethod}
+                  onChange={handleChange}
                 />
                 <Spacing width={"10px"} height={"1px"} />
                 <TextInput
@@ -127,18 +139,22 @@ const BottomSheet = () => {
                     ) : null;
                   })
                 : null}
-              <label htmlFor="requestData" className="textinput__label">
-                Body
-              </label>
-              <textarea
-                name="requestData"
-                id="requestData"
-                cols="30"
-                rows="10"
-                className="bottomsheet__textarea"
-                onChange={handleChange}
-                value={restAPIFormData.requestData}
-              />
+              {restAPIFormData.requestMethod === "POST" && (
+                <>
+                  <label htmlFor="requestData" className="textinput__label">
+                    Body
+                  </label>
+                  <textarea
+                    name="requestData"
+                    id="requestData"
+                    cols="30"
+                    rows="10"
+                    className="bottomsheet__textarea"
+                    onChange={handleChange}
+                    value={restAPIFormData.requestData}
+                  />
+                </>
+              )}
               <br />
               <br />
             </div>
