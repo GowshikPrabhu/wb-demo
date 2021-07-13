@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import CustomMultiInput from "../CustomMultiInput/CustomMultiInput";
 import DropdownInput from "../DropdownInput/DropdownInput";
 import TextInput from "../TextInput/TextInput";
 import "./BottomSheet.css";
@@ -8,10 +7,13 @@ import Spacing from "../Spacing/Spacing";
 import BottomSheetTopBar from "./components/BottomSheetTopBar";
 import BottomSheetContentTwo from "./components/BottomSheetContentTwo";
 import BottomSheetContentThree from "./components/BottomSheetContentThree";
+import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
 
 const BottomSheet = () => {
   const [dualInputs, setDualInput] = useState([]);
+  const [actionsBar, toogleActionsBar] = useState(true);
   const handleChange = () => {};
+
   const handleAdd = () => {
     setDualInput((prevState) => [...prevState, { key: "", value: "" }]);
   };
@@ -25,84 +27,93 @@ const BottomSheet = () => {
 
   return (
     <div className="bottomsheet__container">
-      <BottomSheetTopBar
-        onClear={() => {}}
-        onPreview={() => {}}
-        onSave={() => {}}
-      />
-      <div className="bottomsheet__content">
-        <div className="bottomsheet__content__section1">
-          <DropdownInput
-            label={"Select resource"}
-            name={"resource"}
-            options={[
-              { name: "REST API", value: "REST" },
-              { name: "SOAP", value: "SOAP" }
-            ]}
+      {actionsBar && (
+        <>
+          <BottomSheetTopBar
+            onClear={() => {}}
+            onPreview={() => {}}
+            onSave={() => {}}
           />
-          <br />
-          <br />
-          <label className="textinput__label">Request</label>
-          <div className="bottomsheet__dualinput">
-            <DropdownInput
-              name={"method"}
-              options={[
-                { name: "GET", value: "GET" },
-                { name: "POST", value: "POST" }
-              ]}
-            />
-            <Spacing width={"10px"} height={"1px"} />
-            <TextInput
-              name={"apiUrl"}
-              placeholder={"Request url"}
-              value={""}
-              onChange={handleChange}
-              style={{ width: "100%" }}
-            />
+          <div className="bottomsheet__content">
+            <div className="bottomsheet__content__section1">
+              <DropdownInput
+                label={"Select resource"}
+                name={"resource"}
+                options={[
+                  { name: "REST API", value: "REST" },
+                  { name: "SOAP", value: "SOAP" }
+                ]}
+              />
+              <br />
+              <br />
+              <label className="textinput__label">Request</label>
+              <div className="bottomsheet__dualinput">
+                <DropdownInput
+                  name={"method"}
+                  options={[
+                    { name: "GET", value: "GET" },
+                    { name: "POST", value: "POST" }
+                  ]}
+                />
+                <Spacing width={"10px"} height={"1px"} />
+                <TextInput
+                  name={"apiUrl"}
+                  placeholder={"Request url"}
+                  value={""}
+                  onChange={handleChange}
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <br />
+              <label className="textinput__label">URL Parameters</label>
+              <DualInput
+                handleChange={handleChange}
+                onAdd={handleAdd}
+                // onRemove={handleRemove}
+              />
+              <br />
+              {dualInputs.length > 0
+                ? dualInputs.map((options, idx) => (
+                    <>
+                      <DualInput
+                        key={idx}
+                        inputKey={options.key}
+                        inputValue={options.value}
+                        handleChange={handleChange}
+                        onAdd={handleAdd}
+                        onRemove={() => handleRemove(idx)}
+                      />
+                      <br />
+                    </>
+                  ))
+                : null}
+              <label htmlFor="request-data" className="textinput__label">
+                Body
+              </label>
+              <textarea
+                name=""
+                id="request-data"
+                cols="30"
+                rows="10"
+                className="bottomsheet__textarea"
+              ></textarea>
+              <br />
+              <br />
+            </div>
+            <hr className="bottomsheet__verticalline" />
+            <div className="bottomsheet__content__section2">
+              <BottomSheetContentTwo />
+            </div>
+            <hr className="bottomsheet__verticalline" />
+            <div className="bottomsheet__content__section3">
+              <BottomSheetContentThree />
+            </div>
           </div>
-          <br />
-          <label className="textinput__label">URL Parameters</label>
-          <DualInput
-            handleChange={handleChange}
-            onAdd={handleAdd}
-            // onRemove={handleRemove}
-          />
-          <br />
-          {dualInputs.length > 0
-            ? dualInputs.map((options, idx) => (
-                <>
-                  <DualInput
-                    key={idx}
-                    inputKey={options.key}
-                    inputValue={options.value}
-                    handleChange={handleChange}
-                    onAdd={handleAdd}
-                    onRemove={() => handleRemove(idx)}
-                  />
-                  <br />
-                </>
-              ))
-            : null}
-          <label htmlFor="request-data" className="textinput__label">
-            Body
-          </label>
-          <textarea
-            name=""
-            id="request-data"
-            cols="30"
-            rows="10"
-            className="bottomsheet__textarea"
-          ></textarea>
-        </div>
-        <hr className="bottomsheet__verticalline" />
-        <div className="bottomsheet__content__section2">
-          <BottomSheetContentTwo />
-        </div>
-        <hr className="bottomsheet__verticalline" />
-        <div className="bottomsheet__content__section3">
-          <BottomSheetContentThree />
-        </div>
-      </div>
+        </>
+      )}
+      <BottomSheetBottomBar
+        onToggleAction={() => toogleActionsBar(!actionsBar)}
+      />
     </div>
   );
 };
