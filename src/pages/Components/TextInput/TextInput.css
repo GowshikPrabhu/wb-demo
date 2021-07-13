@@ -1,6 +1,7 @@
 .textinput__label {
   display: block;
   color: var(--heading-text);
+  margin: 4px 0;
 }
 .textinput__input {
   height: 35px;

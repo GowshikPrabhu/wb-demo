@@ -1,6 +1,7 @@
 .dropdown__label {
   display: block;
   color: var(--heading-text);
+  margin: 4px 0;
 }
 .dropdown__select {
   border: 1px solid #c4c4c4;
