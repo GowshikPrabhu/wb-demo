@@ -12,15 +12,6 @@
   /* scroll-behavior: smooth; */
 }
 
-.bottomsheet__topbar {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  background-color: #fff;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid #ccc;
-}
 .bottomsheet__content {
   display: flex;
   flex-direction: row;
@@ -77,3 +68,45 @@
   -moz-box-shadow: 0px 0px 4px var(--info);
   -webkit-box-shadow: 0px 0px 4px var(--info);
 }
+/* BottomSheet TopBar */
+.bottomsheet__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid #ccc;
+}
+.bottomsheet__topbar p {
+  color: var(--heading-text);
+  margin-left: 30px;
+}
+.bottomsheet__topbar div {
+  margin-right: 30px;
+}
+.bottomsheet__topbar button {
+  margin: 0 5px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.bottomsheet__topbar button.clear {
+  background-color: var(--danger);
+  color: white;
+  border: 1px solid var(--danger);
+}
+.bottomsheet__topbar button.preview {
+  background-color: var(--info);
+  color: white;
+  border: 1px solid var(--info);
+}
+.bottomsheet__topbar button.save {
+  background-color: #4aa9e917;
+  color: var(--info);
+  border: 1px solid var(--info);
+}
+/* BottomSheet TopBar End */

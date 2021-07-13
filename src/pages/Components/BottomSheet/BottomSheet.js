@@ -5,6 +5,7 @@ import TextInput from "../TextInput/TextInput";
 import "./BottomSheet.css";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import Spacing from "../Spacing/Spacing";
+import BottomSheetTopBar from "./components/BottomSheetTopBar";
 
 const BottomSheet = () => {
   const [dualInputs, setDualInput] = useState([]);
@@ -22,7 +23,11 @@ const BottomSheet = () => {
 
   return (
     <div className="bottomsheet__container">
-      <div className="bottomsheet__topbar">Hello</div>
+      <BottomSheetTopBar
+        onClear={() => {}}
+        onPreview={() => {}}
+        onSave={() => {}}
+      />
       <div className="bottomsheet__content">
         <div className="bottomsheet__content__section1">
           <DropdownInput
