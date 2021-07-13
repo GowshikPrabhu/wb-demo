@@ -7,6 +7,7 @@ import { FaPlus, FaTimes } from "react-icons/fa";
 import Spacing from "../Spacing/Spacing";
 import BottomSheetTopBar from "./components/BottomSheetTopBar";
 import BottomSheetContentTwo from "./components/BottomSheetContentTwo";
+import BottomSheetContentThree from "./components/BottomSheetContentThree";
 
 const BottomSheet = () => {
   const [dualInputs, setDualInput] = useState([]);
@@ -98,7 +99,9 @@ const BottomSheet = () => {
           <BottomSheetContentTwo />
         </div>
         <hr className="bottomsheet__verticalline" />
-        <div className="bottomsheet__content__section3">Dubakur</div>
+        <div className="bottomsheet__content__section3">
+          <BottomSheetContentThree />
+        </div>
       </div>
     </div>
   );
