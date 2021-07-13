@@ -3,10 +3,10 @@
   color: var(--heading-text);
 }
 .textinput__input {
-  border: 1px solid #c4c4c4;
   height: 35px;
   width: 275px;
-  font-size: 13px;
+  font-size: 14px;
+  border: 1px solid #c4c4c4;
   padding: 4px 4px 4px 4px;
   border-radius: 4px;
   -moz-border-radius: 4px;

@@ -76,6 +76,16 @@ const BottomSheet = () => {
                 </>
               ))
             : null}
+          <label htmlFor="request-data" className="textinput__label">
+            Body
+          </label>
+          <textarea
+            name=""
+            id="request-data"
+            cols="30"
+            rows="10"
+            className="bottomsheet__textarea"
+          ></textarea>
         </div>
         <hr className="bottomsheet__verticalline" />
         <div className="bottomsheet__content__section2">Dubakur</div>
