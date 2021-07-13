@@ -1,15 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
   --body-text: #626262;
   --heading-text: #2c2c2c;
-  --hint: #2c2c2c;
+  --hint: #3f3f3f;
   --success: #23b9a9;
   --danger: #ce4e4d;
   --warning: #eac459;
   --info: #4aa9e9;
 }
-
 body {
-  font-family: "Segoe UI", "Arial", "Helvetica Neu", "Open Sans", sans-serif;
   font-size: 16px;
 }
 

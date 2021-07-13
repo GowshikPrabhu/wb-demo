@@ -1,0 +1,12 @@
+.bottomsheet__container {
+  position: absolute;
+  bottom: 0;
+  background-color: ghostwhite;
+  width: 99.9%;
+  height: 250px;
+  max-height: 350px;
+  border: 1px solid #cccc;
+  overflow-x: hidden;
+  /* overflow: scroll; */
+  /* scroll-behavior: smooth; */
+}
