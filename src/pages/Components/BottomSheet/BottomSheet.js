@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DropdownInput from "../DropdownInput/DropdownInput";
 import TextInput from "../TextInput/TextInput";
 import "./BottomSheet.css";
@@ -10,20 +10,58 @@ import BottomSheetContentThree from "./components/BottomSheetContentThree";
 import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
 
 const BottomSheet = () => {
-  const [dualInputs, setDualInput] = useState([]);
+  const [noOfParameters, setNoOfParameters] = useState(1);
   const [actionsBar, toogleActionsBar] = useState(true);
-  const handleChange = () => {};
+  const [restAPIFormData, setRestAPIFormData] = useState({
+    requestUrl: "",
+    requestData: "",
+    urlparameters: [{ key: "", value: "" }]
+  });
 
-  const handleAdd = () => {
-    setDualInput((prevState) => [...prevState, { key: "", value: "" }]);
-  };
-  const handleRemove = (idx) => {
-    if (dualInputs.length > 0 && idx < dualInputs.length) {
-      let oldArray = dualInputs;
-      oldArray.splice(idx, 1);
-      setDualInput((prevState) => [...oldArray]);
+  const handleChange = (e) => {
+    let inputName = e.target.name;
+    if (inputName === "requestUrl") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestUrl: e.target.value };
+      });
+    } else if (inputName === "requestData") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestData: e.target.value };
+      });
+    } else if (inputName === "urlparametersKey") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[noOfParameters - 1].key = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    } else if (inputName === "urlparametersValue") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[noOfParameters - 1].value = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
     }
   };
+
+  const handleAdd = () => {
+    setNoOfParameters(noOfParameters + 1);
+  };
+  const handleRemove = (idx) => {
+    if (noOfParameters > 1) {
+      setNoOfParameters(noOfParameters - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (noOfParameters > 1) {
+      setRestAPIFormData((prevState) => {
+        return {
+          ...prevState,
+          urlparameters: [...prevState.urlparameters, { key: "", value: "" }]
+        };
+      });
+    }
+  }, [noOfParameters]);
 
   return (
     <div className="bottomsheet__container">
@@ -57,9 +95,10 @@ const BottomSheet = () => {
                 />
                 <Spacing width={"10px"} height={"1px"} />
                 <TextInput
-                  name={"apiUrl"}
+                  name={"requestUrl"}
+                  id={"requestUrl"}
                   placeholder={"Request url"}
-                  value={""}
+                  value={restAPIFormData.requestUrl}
                   onChange={handleChange}
                   style={{ width: "100%" }}
                 />
@@ -69,34 +108,37 @@ const BottomSheet = () => {
               <DualInput
                 handleChange={handleChange}
                 onAdd={handleAdd}
-                // onRemove={handleRemove}
+                value={restAPIFormData.urlparameters[0]}
               />
               <br />
-              {dualInputs.length > 0
-                ? dualInputs.map((options, idx) => (
-                    <>
-                      <DualInput
-                        key={idx}
-                        inputKey={options.key}
-                        inputValue={options.value}
-                        handleChange={handleChange}
-                        onAdd={handleAdd}
-                        onRemove={() => handleRemove(idx)}
-                      />
-                      <br />
-                    </>
-                  ))
+              {restAPIFormData.urlparameters.length > 1
+                ? restAPIFormData.urlparameters.map((obj, idx) => {
+                    return idx !== 0 ? (
+                      <>
+                        <DualInput
+                          key={idx}
+                          value={obj}
+                          handleChange={handleChange}
+                          onAdd={handleAdd}
+                          onRemove={() => handleRemove(idx)}
+                        />
+                        <br />
+                      </>
+                    ) : null;
+                  })
                 : null}
-              <label htmlFor="request-data" className="textinput__label">
+              <label htmlFor="requestData" className="textinput__label">
                 Body
               </label>
               <textarea
-                name=""
-                id="request-data"
+                name="requestData"
+                id="requestData"
                 cols="30"
                 rows="10"
                 className="bottomsheet__textarea"
-              ></textarea>
+                onChange={handleChange}
+                value={restAPIFormData.requestData}
+              />
               <br />
               <br />
             </div>
@@ -120,20 +162,20 @@ const BottomSheet = () => {
 
 export default BottomSheet;
 
-const DualInput = ({ handleChange, onAdd, onRemove }) => {
+const DualInput = ({ handleChange, onAdd, onRemove, value }) => {
   return (
     <div className="bottomsheet__dualinput">
       <TextInput
         name={"urlparametersKey"}
         placeholder={"Key"}
-        value={""}
+        value={value.key}
         onChange={handleChange}
       />
       <Spacing width={"10px"} height={"1px"} />
       <TextInput
         name={"urlparametersValue"}
         placeholder={"Value"}
-        value={""}
+        value={value.value}
         onChange={handleChange}
       />
       <Spacing width={"10px"} height={"1px"} />
