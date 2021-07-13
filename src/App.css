@@ -11,9 +11,11 @@
   --danger: #ce4e4d;
   --warning: #eac459;
   --info: #4aa9e9;
+  --bg: #f9fcff;
 }
 body {
   font-size: 16px;
+  background-color: var(--bg);
 }
 
 h1,
