@@ -113,6 +113,13 @@
   color: var(--info);
   border: 1px solid var(--info);
 }
+.bottomsheet__topbar button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 3px rgba(147, 147, 147, 0.8);
+}
+.bottomsheet__topbar button:active {
+  transform: scale(0.9);
+}
 /* BottomSheet TopBar End */
 
 /* BottomSheet Content Section 2*/
