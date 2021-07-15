@@ -8,6 +8,7 @@ import BottomSheetTopBar from "./components/BottomSheetTopBar";
 import BottomSheetContentTwo from "./components/BottomSheetContentTwo";
 import BottomSheetContentThree from "./components/BottomSheetContentThree";
 import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
+import { doGet } from "../../../actions/REST_API_actions";
 
 const BottomSheet = () => {
   const [noOfParameters, setNoOfParameters] = useState(1);
@@ -19,6 +20,8 @@ const BottomSheet = () => {
     requestData: "",
     urlparameters: [{ key: "", value: "" }]
   });
+  const [queryResponse, setQueryResponse] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     let inputName = e.target.name;
@@ -60,6 +63,34 @@ const BottomSheet = () => {
     }
   };
 
+  const clearActionStates = () => {
+    setNoOfParameters(1);
+    setAPIResource("REST");
+    setRestAPIFormData(() => {
+      return {
+        requestUrl: "",
+        requestMethod: "GET",
+        requestData: "",
+        urlparameters: [{ key: "", value: "" }]
+      };
+    });
+    setQueryResponse({});
+  };
+
+  const handleRequestPreview = async () => {
+    setLoading(true);
+    if (apiResource === "REST") {
+      if (restAPIFormData.requestMethod === "GET") {
+        let data = await doGet(
+          restAPIFormData.requestUrl,
+          restAPIFormData.urlparameters
+        );
+        setQueryResponse(data);
+      }
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     if (noOfParameters > 1) {
       setRestAPIFormData((prevState) => {
@@ -76,8 +107,8 @@ const BottomSheet = () => {
       {actionsBar && (
         <>
           <BottomSheetTopBar
-            onClear={() => {}}
-            onPreview={() => {}}
+            onClear={clearActionStates}
+            onPreview={handleRequestPreview}
             onSave={() => {}}
           />
           <div className="bottomsheet__content">
@@ -164,13 +195,14 @@ const BottomSheet = () => {
             </div>
             <hr className="bottomsheet__verticalline" />
             <div className="bottomsheet__content__section3">
-              <BottomSheetContentThree />
+              <BottomSheetContentThree content={queryResponse} />
             </div>
           </div>
         </>
       )}
       <BottomSheetBottomBar
         onToggleAction={() => toogleActionsBar(!actionsBar)}
+        loading={loading}
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { VscLoading } from "react-icons/vsc";
 import { BsBoxArrowUpRight, BsBoxArrowDownLeft } from "react-icons/bs";
 
-const BottomSheetBottomBar = ({ onToggleAction }) => {
+const BottomSheetBottomBar = ({ onToggleAction, loading }) => {
   return (
     <div className="bottomsheet__bottombar">
       <div className="bottombar__firstarea">
@@ -16,7 +16,7 @@ const BottomSheetBottomBar = ({ onToggleAction }) => {
           )}
         </button>
       </div>
-      {true ? (
+      {loading ? (
         <p className="loading-with-icon">
           <VscLoading className="loading-icon" />
           Loading
