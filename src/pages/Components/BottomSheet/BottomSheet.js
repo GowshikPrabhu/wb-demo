@@ -58,10 +58,24 @@ const BottomSheet = () => {
     }
   };
   const handleAdd = () => {
+    setRestAPIFormData((prevState) => {
+      return {
+        ...prevState,
+        urlparameters: [...prevState.urlparameters, { key: "", value: "" }]
+      };
+    });
     setNoOfParameters(noOfParameters + 1);
   };
   const handleRemove = (idx) => {
     if (noOfParameters > 1) {
+      let arr = restAPIFormData.urlparameters;
+      arr.splice(idx, 1);
+      setRestAPIFormData((prevState) => {
+        return {
+          ...prevState,
+          urlparameters: [...arr]
+        };
+      });
       setNoOfParameters(noOfParameters - 1);
     }
   };
@@ -98,17 +112,6 @@ const BottomSheet = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (noOfParameters > 1) {
-      setRestAPIFormData((prevState) => {
-        return {
-          ...prevState,
-          urlparameters: [...prevState.urlparameters, { key: "", value: "" }]
-        };
-      });
-    }
-  }, [noOfParameters]);
 
   return (
     <div className="bottomsheet__container">
