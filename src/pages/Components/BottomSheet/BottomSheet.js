@@ -78,17 +78,22 @@ const BottomSheet = () => {
   };
 
   const handleRequestPreview = async () => {
-    setLoading(true);
-    if (apiResource === "REST") {
-      if (restAPIFormData.requestMethod === "GET") {
-        let data = await doGet(
-          restAPIFormData.requestUrl,
-          restAPIFormData.urlparameters
-        );
-        setQueryResponse(data);
+    try {
+      setLoading(true);
+      if (apiResource === "REST") {
+        if (restAPIFormData.requestMethod === "GET") {
+          let data = await doGet(
+            restAPIFormData.requestUrl,
+            restAPIFormData.urlparameters
+          );
+          setQueryResponse(data);
+        }
       }
+    } catch (err) {
+      alert("Invalid URL");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
