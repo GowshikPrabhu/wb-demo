@@ -5,11 +5,10 @@
  */
 export const urlToParams = (params) => {
   let paramsArray = [];
-  for (let obj in params) {
+  for (let obj of params) {
     let temp = [obj.key, obj.value];
     paramsArray.push(temp);
   }
-
   let searchParams = new URLSearchParams(paramsArray).toString();
   return searchParams;
 };
