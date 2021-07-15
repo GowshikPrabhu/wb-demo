@@ -33,18 +33,6 @@ const BottomSheet = () => {
       setRestAPIFormData((prevState) => {
         return { ...prevState, requestData: e.target.value };
       });
-    } else if (inputName === "urlparametersKey") {
-      let arrCopy = restAPIFormData.urlparameters;
-      arrCopy[noOfParameters - 1].key = e.target.value;
-      setRestAPIFormData((prevState) => {
-        return { ...prevState, urlparameters: [...arrCopy] };
-      });
-    } else if (inputName === "urlparametersValue") {
-      let arrCopy = restAPIFormData.urlparameters;
-      arrCopy[noOfParameters - 1].value = e.target.value;
-      setRestAPIFormData((prevState) => {
-        return { ...prevState, urlparameters: [...arrCopy] };
-      });
     } else if (inputName === "resource") {
       setAPIResource(e.target.value);
     } else if (inputName === "method") {
@@ -53,7 +41,22 @@ const BottomSheet = () => {
       });
     }
   };
-
+  const handleChangeDualInput = (e, idx) => {
+    let inputName = e.target.name;
+    if (inputName === "urlparametersKey") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[idx].key = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    } else if (inputName === "urlparametersValue") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[idx].value = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    }
+  };
   const handleAdd = () => {
     setNoOfParameters(noOfParameters + 1);
   };
@@ -154,7 +157,7 @@ const BottomSheet = () => {
               <br />
               <label className="textinput__label">URL Parameters</label>
               <DualInput
-                handleChange={handleChange}
+                handleChange={(e) => handleChangeDualInput(e, 0)}
                 onAdd={handleAdd}
                 value={restAPIFormData.urlparameters[0]}
               />
@@ -166,7 +169,7 @@ const BottomSheet = () => {
                         <DualInput
                           key={idx}
                           value={obj}
-                          handleChange={handleChange}
+                          handleChange={(e) => handleChangeDualInput(e, idx)}
                           onAdd={handleAdd}
                           onRemove={() => handleRemove(idx)}
                         />
