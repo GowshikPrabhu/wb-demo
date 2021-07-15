@@ -6,8 +6,10 @@
 export const urlToParams = (params) => {
   let paramsArray = [];
   for (let obj of params) {
-    let temp = [obj.key, obj.value];
-    paramsArray.push(temp);
+    if (obj.key.length > 0) {
+      let temp = [obj.key, obj.value];
+      paramsArray.push(temp);
+    }
   }
   let searchParams = new URLSearchParams(paramsArray).toString();
   return searchParams;

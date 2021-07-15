@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DropdownInput from "../DropdownInput/DropdownInput";
 import TextInput from "../TextInput/TextInput";
 import "./BottomSheet.css";
