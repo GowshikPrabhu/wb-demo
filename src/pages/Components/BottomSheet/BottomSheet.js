@@ -8,7 +8,7 @@ import BottomSheetTopBar from "./components/BottomSheetTopBar";
 import BottomSheetContentTwo from "./components/BottomSheetContentTwo";
 import BottomSheetContentThree from "./components/BottomSheetContentThree";
 import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
-import { doGet } from "../../../actions/REST_API_actions";
+import { doGet, doPost } from "../../../actions/REST_API_actions";
 import JsonInput from "../JsonInput/JsonInput";
 
 const BottomSheet = () => {
@@ -103,6 +103,15 @@ const BottomSheet = () => {
           let data = await doGet(
             restAPIFormData.requestUrl,
             restAPIFormData.urlparameters
+          );
+          setQueryResponse(data);
+        }
+        if (restAPIFormData.requestMethod === "POST") {
+          let body = JSON.stringify(restAPIFormData.requestData);
+          let data = await doPost(
+            restAPIFormData.requestUrl,
+            restAPIFormData.urlparameters,
+            body
           );
           setQueryResponse(data);
         }
