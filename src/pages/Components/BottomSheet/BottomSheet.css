@@ -55,7 +55,7 @@
 .bottomsheet__datainput {
   resize: none;
   width: 75%;
-  height: 150px;
+  height: 200px;
   font-size: 14px;
   border: 1px solid #c4c4c4;
   padding: 4px 4px 4px 4px;
@@ -65,6 +65,7 @@
   box-shadow: 0px 0px 8px #d9d9d9;
   -moz-box-shadow: 0px 0px 8px #d9d9d9;
   -webkit-box-shadow: 0px 0px 8px #d9d9d9;
+  overflow: auto;
 }
 .bottomsheet__datainput:focus {
   outline: none;

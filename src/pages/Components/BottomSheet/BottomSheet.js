@@ -18,7 +18,7 @@ const BottomSheet = () => {
   const [restAPIFormData, setRestAPIFormData] = useState({
     requestUrl: "",
     requestMethod: "GET",
-    requestData: "",
+    requestData: {},
     urlparameters: [{ key: "", value: "" }]
   });
   const [queryResponse, setQueryResponse] = useState({});
@@ -114,6 +114,12 @@ const BottomSheet = () => {
     }
   };
 
+  const handleChangeData = (data) => {
+    setRestAPIFormData((prevState) => {
+      return { ...prevState, requestData: { ...data } };
+    });
+  };
+
   return (
     <div className="bottomsheet__container">
       {actionsBar && (
@@ -197,7 +203,11 @@ const BottomSheet = () => {
                     value={restAPIFormData.requestData}
                   /> */}
                   <div className="bottomsheet__datainput">
-                    <JsonInput />
+                    <JsonInput
+                      name={"body"}
+                      value={restAPIFormData.requestData}
+                      onChange={handleChangeData}
+                    />
                   </div>
                 </>
               )}
