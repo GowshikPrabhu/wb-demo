@@ -12,6 +12,7 @@ const BottomSheetContentThree = ({ content }) => {
           // <pre>{JSON.stringify(content, undefined, 4)}</pre>
           <ReactJson
             src={content}
+            name={"Response data"}
             iconStyle={"triangle"}
             enableClipboard={true}
             displayDataTypes={true}
