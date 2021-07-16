@@ -149,21 +149,21 @@
   width: 100%;
   border: 1px solid #c4c4c4;
   margin-top: 5px;
-  padding: 0;
+  padding: 4px 4px 4px 4px;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   box-shadow: 0px 0px 8px #d9d9d9;
   -moz-box-shadow: 0px 0px 8px #d9d9d9;
   -webkit-box-shadow: 0px 0px 8px #d9d9d9;
-  overflow: hidden;
+  overflow: auto;
 }
-.bottomsheet__content__section3 .content__area pre {
+/* .bottomsheet__content__section3 .content__area pre {
   padding: 4px 4px 4px 4px;
   height: 280px;
   width: 100%;
   overflow: auto;
-}
+} */
 /* BottomSheet Bottom Bar */
 .bottomsheet__bottombar {
   display: flex;

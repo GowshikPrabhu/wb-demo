@@ -1,4 +1,5 @@
 import React from "react";
+import ReactJson from "react-json-view";
 
 const BottomSheetContentThree = ({ content }) => {
   return (
@@ -8,7 +9,17 @@ const BottomSheetContentThree = ({ content }) => {
       </div>
       <div className="content__area">
         {Object.keys(content).length > 0 && (
-          <pre>{JSON.stringify(content, undefined, 4)}</pre>
+          // <pre>{JSON.stringify(content, undefined, 4)}</pre>
+          <ReactJson
+            src={content}
+            iconStyle={"triangle"}
+            enableClipboard={true}
+            displayDataTypes={true}
+            displayObjectSize={true}
+            onDelete={false}
+            onAdd={false}
+            onEdit={false}
+          />
         )}
       </div>
     </>
