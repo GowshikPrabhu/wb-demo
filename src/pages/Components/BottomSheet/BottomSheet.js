@@ -9,6 +9,7 @@ import BottomSheetContentTwo from "./components/BottomSheetContentTwo";
 import BottomSheetContentThree from "./components/BottomSheetContentThree";
 import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
 import { doGet } from "../../../actions/REST_API_actions";
+import JsonInput from "../JsonInput/JsonInput";
 
 const BottomSheet = () => {
   const [noOfParameters, setNoOfParameters] = useState(1);
@@ -186,7 +187,7 @@ const BottomSheet = () => {
                   <label htmlFor="requestData" className="textinput__label">
                     Body
                   </label>
-                  <textarea
+                  {/* <textarea
                     name="requestData"
                     id="requestData"
                     cols="30"
@@ -194,7 +195,10 @@ const BottomSheet = () => {
                     className="bottomsheet__textarea"
                     onChange={handleChange}
                     value={restAPIFormData.requestData}
-                  />
+                  /> */}
+                  <div className="bottomsheet__datainput">
+                    <JsonInput />
+                  </div>
                 </>
               )}
               <br />
