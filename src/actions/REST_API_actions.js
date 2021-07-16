@@ -33,3 +33,38 @@ export const doGet = async (url, params = {}) => {
     return { error: "A problem has occured" };
   }
 };
+
+export const doPost = async (url, params = {}, data) => {
+  let urlString = new URL(url);
+  let paramsString = urlToParams(params);
+
+  urlString.search = paramsString;
+
+  let myheaders = new Headers();
+  myheaders.append("Content-Type", "application/json");
+
+  let options = {
+    method: "POST",
+    headers: myheaders,
+    body: data
+  };
+
+  try {
+    const response = await fetch(urlString, options);
+    if (!(response.status >= 200) && !(response.status < 300)) {
+      console.log(
+        "Looks like there was a problem. Status code = " + response.status
+      );
+      console.log(response);
+      let errorResponse = {
+        status: response.status,
+        error: "A problem has occured"
+      };
+      return errorResponse;
+    }
+    return response.json();
+  } catch (err) {
+    console.log("Fetch error :-S", err);
+    return { error: "A problem has occured" };
+  }
+};
