@@ -1,0 +1,119 @@
+header {
+  position: static;
+  top: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: rgb(238, 244, 245);
+  border-bottom: 1px solid #ccc;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+}
+.header__right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+}
+.header__menuIcon {
+  margin: 0 4px;
+  color: var(--heading-text);
+}
+.header__menuIcon:hover {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+.header__title {
+  color: var(--heading-text);
+  font-size: 16px;
+  margin: 0 4px;
+}
+.header__saved {
+  color: #3f3f3f;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+}
+.header__playIcon {
+  margin: 0 8px;
+  padding: 10px;
+  background-color: var(--info);
+  border-radius: 4px;
+  color: white;
+  font-size: 32px;
+}
+.header__playIcon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 3px rgba(147, 147, 147, 0.8);
+}
+.header__playIcon:active {
+  transform: scale(0.95);
+}
+
+.header__shareButton,
+.header__publishButton {
+  border: none;
+  width: 100px;
+  padding: 6px 10px;
+  font-size: 15px;
+  border-radius: 4px;
+  margin: 0 8px;
+  background-color: var(--info);
+  color: white;
+  border: 1px solid var(--info);
+}
+.header__shareButton {
+  background-color: #4aa9e917;
+  color: var(--info);
+}
+.header__publishButton:hover,
+.header__shareButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 3px rgba(147, 147, 147, 0.8);
+}
+.header__publishButton:active,
+.header__shareButton:active {
+  transform: scale(0.95);
+}
+.header__accountButton {
+  width: 35px;
+  height: 35px;
+  margin: 0 8px;
+  border-radius: 50%;
+}
+.header__accountButton img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}

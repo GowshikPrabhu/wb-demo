@@ -1,9 +1,10 @@
 import React from "react";
-import { BottomSheet } from "../Components";
+import { BottomSheet, Header } from "../Components";
 
 const Home = () => {
   return (
     <div>
+      <Header />
       <BottomSheet />
     </div>
   );
