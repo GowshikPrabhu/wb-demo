@@ -10,6 +10,8 @@ import BottomSheetContentThree from "./components/BottomSheetContentThree";
 import BottomSheetBottomBar from "./components/BottomSheetBottomBar";
 import { doGet, doPost } from "../../../actions/REST_API_actions";
 import JsonInput from "../JsonInput/JsonInput";
+import ReactModal from "react-modal";
+import BottomSheetModal from "./components/BottomSheetModal";
 
 const BottomSheet = () => {
   const [noOfParameters, setNoOfParameters] = useState(1);
@@ -23,6 +25,11 @@ const BottomSheet = () => {
   });
   const [queryResponse, setQueryResponse] = useState({});
   const [loading, setLoading] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
+  const [dataVariable, setDataVariable] = useState({
+    variableName: "",
+    data: {}
+  });
 
   const handleChange = (e) => {
     let inputName = e.target.name;
@@ -39,6 +46,10 @@ const BottomSheet = () => {
     } else if (inputName === "method") {
       setRestAPIFormData((prevState) => {
         return { ...prevState, requestMethod: e.target.value };
+      });
+    } else if (inputName === "variableName") {
+      setDataVariable((prevState) => {
+        return { ...prevState, variableName: e.target.value };
       });
     }
   };
@@ -136,7 +147,7 @@ const BottomSheet = () => {
           <BottomSheetTopBar
             onClear={clearActionStates}
             onPreview={handleRequestPreview}
-            onSave={() => {}}
+            onSave={() => setModalOpened(true)}
           />
           <div className="bottomsheet__content">
             <div className="bottomsheet__content__section1">
@@ -238,6 +249,32 @@ const BottomSheet = () => {
         onToggleAction={() => toogleActionsBar(!actionsBar)}
         loading={loading}
       />
+      <ReactModal
+        isOpen={modalOpened}
+        contentLabel={"Save response object"}
+        style={{
+          overlay: {
+            background: "rgba(182, 220, 246, 0.3)"
+          },
+          content: {
+            height: "max-content",
+            width: "50vw",
+            left: "50%",
+            top: "25%",
+            transform: "translateX(-50%)",
+            boxShadow: "0 0 5px rgba(100, 100, 100, 0.3)"
+          }
+        }}
+      >
+        <BottomSheetModal
+          variableName={dataVariable.variableName}
+          onVariableChange={handleChange}
+          responseData={{}}
+          onDataChange={() => {}}
+          onClickSave={() => {}}
+          onClickClose={() => setModalOpened(false)}
+        />
+      </ReactModal>
     </div>
   );
 };

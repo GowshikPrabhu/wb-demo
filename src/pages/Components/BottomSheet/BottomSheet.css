@@ -265,3 +265,35 @@
   }
 }
 /* BottomSheet Bottom Bar End*/
+
+/* BottomSheet Modal */
+.bottomsheet__modal {
+  margin: 0 5%;
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea button {
+  border: none;
+  width: 100px;
+  padding: 6px 10px;
+  font-size: 15px;
+  border-radius: 4px;
+  margin: 10px 4px;
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea button.modal__buttonsave {
+  background-color: var(--info);
+  color: white;
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea button.modal__buttonclose {
+  background-color: var(--danger);
+  color: white;
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea button:hover {
+  transform: scale(1.05);
+}
+.bottomsheet__modal .bottomsheet__modal__buttonsArea button:active {
+  transform: scale(0.95);
+}
+/* BottomSheet Modal End */
