@@ -171,8 +171,8 @@ const BottomSheet = () => {
                 label={"Select resource"}
                 name={"resource"}
                 options={[
-                  { name: "REST API", value: "REST" },
-                  { name: "SOAP", value: "SOAP" }
+                  { name: "REST API", value: "REST" }
+                  // { name: "SOAP", value: "SOAP" }
                 ]}
                 value={apiResource}
                 onChange={handleChange}
