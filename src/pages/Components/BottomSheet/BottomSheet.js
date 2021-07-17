@@ -53,6 +53,7 @@ const BottomSheet = () => {
       });
     }
   };
+
   const handleChangeDualInput = (e, idx) => {
     let inputName = e.target.name;
     if (inputName === "urlparametersKey") {
@@ -69,6 +70,7 @@ const BottomSheet = () => {
       });
     }
   };
+
   const handleAdd = () => {
     setRestAPIFormData((prevState) => {
       return {
@@ -78,6 +80,7 @@ const BottomSheet = () => {
     });
     setNoOfParameters(noOfParameters + 1);
   };
+
   const handleRemove = (idx) => {
     if (noOfParameters > 1) {
       let arr = restAPIFormData.urlparameters;
@@ -134,10 +137,23 @@ const BottomSheet = () => {
     }
   };
 
-  const handleChangeData = (data) => {
-    setRestAPIFormData((prevState) => {
-      return { ...prevState, requestData: { ...data } };
+  const handleChangeData = (data, forModal = false) => {
+    if (forModal) {
+      setDataVariable((prevState) => {
+        return { ...prevState, data: { ...data } };
+      });
+    } else {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestData: { ...data } };
+      });
+    }
+  };
+
+  const handleOnSave = () => {
+    setDataVariable((prevState) => {
+      return { ...prevState, data: queryResponse };
     });
+    setModalOpened(true);
   };
 
   return (
@@ -147,7 +163,7 @@ const BottomSheet = () => {
           <BottomSheetTopBar
             onClear={clearActionStates}
             onPreview={handleRequestPreview}
-            onSave={() => setModalOpened(true)}
+            onSave={handleOnSave}
           />
           <div className="bottomsheet__content">
             <div className="bottomsheet__content__section1">
@@ -269,8 +285,8 @@ const BottomSheet = () => {
         <BottomSheetModal
           variableName={dataVariable.variableName}
           onVariableChange={handleChange}
-          responseData={{}}
-          onDataChange={() => {}}
+          responseData={dataVariable.data}
+          onDataChange={(data) => handleChangeData(data, true)}
           onClickSave={() => {}}
           onClickClose={() => setModalOpened(false)}
         />
