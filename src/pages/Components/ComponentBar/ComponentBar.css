@@ -8,47 +8,7 @@ aside.componentbar__container {
   border-right: 1px solid #ccc;
   padding: 8px;
 }
-aside.componentbar__container > h4 {
-  font-size: 18px;
-  margin: 4px 0;
-}
-.componentbar__details {
-  /* border: 1px solid #aaa; */
-  border-radius: 4px;
-  padding: 2px 4px 2px;
-}
-.componentbar__details[open] {
-  border: 0;
-}
-.componentbar__details > summary {
-  font-size: 18px;
-  color: #272727;
-  cursor: pointer;
-  list-style: none;
-  position: relative;
-}
-.componentbar__details > summary::after {
-  content: "\25BE";
-  padding-left: 5px;
-  font-size: 14px;
-  position: absolute;
-  top: 2px;
-}
-.componentbar__details[open] > summary::after {
-  content: "\25B4";
-}
-.componentbar__details > ul {
-  margin: 10px 25px;
-  list-style: none;
-}
-.componentbar__details > ul > li {
-  color: var(--heading-text);
-  font-size: 16px;
-  margin: 8px 0;
-  cursor: pointer;
-}
-.componentbar__details > ul > li:hover {
-}
+
 aside.componentbar__container hr {
   color: white;
 }
