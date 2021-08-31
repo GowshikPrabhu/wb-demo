@@ -1,7 +1,7 @@
 import React from "react";
 import ReactJson from "react-json-view";
 
-const BottomSheetContentThree = ({ content }) => {
+const ActionContentThree = ({ content }) => {
   return (
     <>
       <div className="content__options">
@@ -27,4 +27,4 @@ const BottomSheetContentThree = ({ content }) => {
   );
 };
 
-export default BottomSheetContentThree;
+export default ActionContentThree;

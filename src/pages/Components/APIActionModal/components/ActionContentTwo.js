@@ -1,6 +1,6 @@
 import React from "react";
 
-const BottomSheetContentTwo = () => {
+const ActionContentTwo = () => {
   return (
     <>
       <div className="content__options">
@@ -11,4 +11,4 @@ const BottomSheetContentTwo = () => {
   );
 };
 
-export default BottomSheetContentTwo;
+export default ActionContentTwo;

@@ -2,7 +2,7 @@ import React from "react";
 import JsonInput from "../../JsonInput/JsonInput";
 import TextInput from "../../TextInput/TextInput";
 
-const BottomSheetModal = ({
+const ActionModal = ({
   variableName,
   onVariableChange,
   responseData,
@@ -11,7 +11,7 @@ const BottomSheetModal = ({
   onClickClose
 }) => {
   return (
-    <div className="bottomsheet__modal">
+    <div className="actionmodal__modal">
       <TextInput
         label={"Variable Name"}
         name={"variableName"}
@@ -26,12 +26,12 @@ const BottomSheetModal = ({
       <label htmlFor="requestData" className="textinput__label">
         Body
       </label>
-      <div className="bottomsheet__datainput" style={{ width: "100%" }}>
+      <div className="actionmodal__datainput" style={{ width: "100%" }}>
         <JsonInput name={"body"} value={responseData} onChange={onDataChange} />
       </div>
       <br />
       <hr style={{ color: "#fff" }} />
-      <div className="bottomsheet__modal__buttonsArea">
+      <div className="actionmodal__modal__buttonsArea">
         <button className="modal__buttonsave" onClick={onClickSave}>
           Save
         </button>
@@ -43,4 +43,4 @@ const BottomSheetModal = ({
   );
 };
 
-export default BottomSheetModal;
+export default ActionModal;

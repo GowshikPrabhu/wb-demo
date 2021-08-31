@@ -1,8 +1,8 @@
 import React from "react";
 
-const BottomSheetTopBar = ({ onClear, onPreview, onSave }) => {
+const ActionTopBar = ({ onClear, onPreview, onSave }) => {
   return (
-    <div className="bottomsheet__topbar">
+    <div className="actionmodal__topbar">
       <p>Actions</p>
       <div>
         <button className="clear" onClick={onClear}>
@@ -19,4 +19,4 @@ const BottomSheetTopBar = ({ onClear, onPreview, onSave }) => {
   );
 };
 
-export default BottomSheetTopBar;
+export default ActionTopBar;
