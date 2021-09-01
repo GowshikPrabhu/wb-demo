@@ -1,0 +1,74 @@
+.editcomponent {
+  font-family: Poppins;
+  font-size: 13px;
+  color: #34495e;
+  padding-right: 1em;
+}
+
+.editcomponent__input {
+  border: 1px solid #cecece;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  color: #34495e;
+  font-size: 13px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.editcomponent__seperator {
+  background-color: #bdc3c7;
+  height: 1px;
+  width: 100%;
+  margin-bottom: 0.6em;
+}
+
+.editcomponent__uppercaseText {
+  font-family: Poppins;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  margin-bottom: 2em;
+}
+
+.editcomponent__iconButton {
+  margin-top: 0.5em;
+  margin-right: 0.6em;
+  background-color: #bdc3c7;
+  color: #36454f;
+  border: none;
+  outline: none;
+  padding: 0.5em;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.editcomponent__iconButton:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.editComponent__backButton {
+  color: #7f8c8d;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.editComponent__backButton:hover {
+  text-decoration: underline;
+}
+
+.editcomponent__button {
+  background-color: #34495e;
+  color: #fff;
+  padding: 1em;
+  font-family: Poppins;
+  letter-spacing: 1px;
+  border: none;
+  outline: none;
+}
+
+.editcomponent__button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}

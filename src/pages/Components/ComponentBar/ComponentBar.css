@@ -1,14 +1,23 @@
-aside.componentbar__container {
-  width: 250px;
-  position: absolute;
+aside.componentbar {
+  width: 18em;
+  position: fixed;
   top: 50px;
   bottom: 30px;
   left: 0;
-  background-color: rgb(238, 244, 245);
+  background-color: #fff;
   border-right: 1px solid #ccc;
   padding: 8px;
+  padding: 0.5em;
+  padding-top: 0em;
+  padding-right: 0em;
 }
-
-aside.componentbar__container hr {
-  color: white;
+.componentbar .componentbar__header {
+  background-color: #f5f5f5;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  color: #979797;
+  width: 100%;
+  padding: 0.5em;
+  font-weight: bold;
+  border-bottom: 1px solid #cecece;
 }
