@@ -48,7 +48,7 @@ const BottomSheet = () => {
           }
         }}
       >
-        <APIActionModal />
+        <APIActionModal onClose={() => toogleActionsBar(!actionsBar)} />
       </ReactModal>
     </div>
   );

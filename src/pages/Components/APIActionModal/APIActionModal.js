@@ -5,14 +5,13 @@ import "./APIActionModal.css";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import Spacing from "../Spacing/Spacing";
 import ActionTopBar from "./components/ActionTopBar";
-import ActionContentTwo from "./components/ActionContentTwo";
 import ActionContentThree from "./components/ActionContentThree";
 import { doGet, doPost } from "../../../actions/REST_API_actions";
 import JsonInput from "../JsonInput/JsonInput";
 import ReactModal from "react-modal";
 import ActionModal from "./components/ActionModal";
 
-const APIActionModal = () => {
+const APIActionModal = (props) => {
   const [noOfParameters, setNoOfParameters] = useState(1);
   const [apiResource, setAPIResource] = useState("REST");
   const [restAPIFormData, setRestAPIFormData] = useState({
@@ -30,133 +29,137 @@ const APIActionModal = () => {
   });
 
   const handleChange = (e) => {
-    // let inputName = e.target.name;
-    // if (inputName === "requestUrl") {
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, requestUrl: e.target.value };
-    //   });
-    // } else if (inputName === "requestData") {
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, requestData: e.target.value };
-    //   });
-    // } else if (inputName === "resource") {
-    //   setAPIResource(e.target.value);
-    // } else if (inputName === "method") {
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, requestMethod: e.target.value };
-    //   });
-    // } else if (inputName === "variableName") {
-    //   setDataVariable((prevState) => {
-    //     return { ...prevState, variableName: e.target.value };
-    //   });
-    // }
+    let inputName = e.target.name;
+    if (inputName === "requestUrl") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestUrl: e.target.value };
+      });
+    } else if (inputName === "requestData") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestData: e.target.value };
+      });
+    } else if (inputName === "resource") {
+      setAPIResource(e.target.value);
+    } else if (inputName === "method") {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestMethod: e.target.value };
+      });
+    } else if (inputName === "variableName") {
+      setDataVariable((prevState) => {
+        return { ...prevState, variableName: e.target.value };
+      });
+    }
   };
 
   const handleChangeDualInput = (e, idx) => {
-    // let inputName = e.target.name;
-    // if (inputName === "urlparametersKey") {
-    //   let arrCopy = restAPIFormData.urlparameters;
-    //   arrCopy[idx].key = e.target.value;
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, urlparameters: [...arrCopy] };
-    //   });
-    // } else if (inputName === "urlparametersValue") {
-    //   let arrCopy = restAPIFormData.urlparameters;
-    //   arrCopy[idx].value = e.target.value;
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, urlparameters: [...arrCopy] };
-    //   });
-    // }
+    let inputName = e.target.name;
+    if (inputName === "urlparametersKey") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[idx].key = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    } else if (inputName === "urlparametersValue") {
+      let arrCopy = restAPIFormData.urlparameters;
+      arrCopy[idx].value = e.target.value;
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, urlparameters: [...arrCopy] };
+      });
+    }
   };
 
   const handleAdd = () => {
-    // setRestAPIFormData((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     urlparameters: [...prevState.urlparameters, { key: "", value: "" }]
-    //   };
-    // });
-    // setNoOfParameters(noOfParameters + 1);
+    setRestAPIFormData((prevState) => {
+      return {
+        ...prevState,
+        urlparameters: [...prevState.urlparameters, { key: "", value: "" }]
+      };
+    });
+    setNoOfParameters(noOfParameters + 1);
   };
 
   const handleRemove = (idx) => {
-    // if (noOfParameters > 1) {
-    //   let arr = restAPIFormData.urlparameters;
-    //   arr.splice(idx, 1);
-    //   setRestAPIFormData((prevState) => {
-    //     return {
-    //       ...prevState,
-    //       urlparameters: [...arr]
-    //     };
-    //   });
-    //   setNoOfParameters(noOfParameters - 1);
-    // }
+    if (noOfParameters > 1) {
+      let arr = restAPIFormData.urlparameters;
+      arr.splice(idx, 1);
+      setRestAPIFormData((prevState) => {
+        return {
+          ...prevState,
+          urlparameters: [...arr]
+        };
+      });
+      setNoOfParameters(noOfParameters - 1);
+    }
   };
 
   const clearActionStates = () => {
-    // setNoOfParameters(1);
-    // setAPIResource("REST");
-    // setRestAPIFormData(() => {
-    //   return {
-    //     requestUrl: "",
-    //     requestMethod: "GET",
-    //     requestData: "",
-    //     urlparameters: [{ key: "", value: "" }]
-    //   };
-    // });
-    // setQueryResponse({});
+    setNoOfParameters(1);
+    setAPIResource("REST");
+    setRestAPIFormData(() => {
+      return {
+        requestUrl: "",
+        requestMethod: "GET",
+        requestData: "",
+        urlparameters: [{ key: "", value: "" }]
+      };
+    });
+    setQueryResponse({});
   };
 
   const handleRequestPreview = async () => {
-    // try {
-    //   setLoading(true);
-    //   if (apiResource === "REST") {
-    //     if (restAPIFormData.requestMethod === "GET") {
-    //       let data = await doGet(
-    //         restAPIFormData.requestUrl,
-    //         restAPIFormData.urlparameters
-    //       );
-    //       setQueryResponse(data);
-    //     }
-    //     if (restAPIFormData.requestMethod === "POST") {
-    //       let body = JSON.stringify(restAPIFormData.requestData);
-    //       let data = await doPost(
-    //         restAPIFormData.requestUrl,
-    //         restAPIFormData.urlparameters,
-    //         body
-    //       );
-    //       setQueryResponse(data);
-    //     }
-    //   }
-    // } catch (err) {
-    //   alert("Invalid URL");
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      if (apiResource === "REST") {
+        if (restAPIFormData.requestMethod === "GET") {
+          let data = await doGet(
+            restAPIFormData.requestUrl,
+            restAPIFormData.urlparameters
+          );
+          setQueryResponse(data);
+        }
+        if (restAPIFormData.requestMethod === "POST") {
+          let body = JSON.stringify(restAPIFormData.requestData);
+          let data = await doPost(
+            restAPIFormData.requestUrl,
+            restAPIFormData.urlparameters,
+            body
+          );
+          setQueryResponse(data);
+        }
+      }
+    } catch (err) {
+      alert("Invalid URL");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChangeData = (data, forModal = false) => {
-    // if (forModal) {
-    //   setDataVariable((prevState) => {
-    //     return { ...prevState, data: { ...data } };
-    //   });
-    // } else {
-    //   setRestAPIFormData((prevState) => {
-    //     return { ...prevState, requestData: { ...data } };
-    //   });
-    // }
+    if (forModal) {
+      setDataVariable((prevState) => {
+        return { ...prevState, data: { ...data } };
+      });
+    } else {
+      setRestAPIFormData((prevState) => {
+        return { ...prevState, requestData: { ...data } };
+      });
+    }
   };
 
   const handleOnSave = () => {
-    // setDataVariable((prevState) => {
-    //   return { ...prevState, data: queryResponse };
-    // });
-    // setModalOpened(true);
+    setDataVariable((prevState) => {
+      return { ...prevState, data: queryResponse };
+    });
+    setModalOpened(true);
   };
 
   return (
-    <div className="actionmodal__container">
-      <>
+    <>
+      <div className="actionmodal__header">
+        <h3>API Actions</h3>
+        <FaTimes onClick={props.onClose} size={24} />
+      </div>
+      <div className="actionmodal__action_section">
         <ActionTopBar
           onClear={clearActionStates}
           onPreview={handleRequestPreview}
@@ -247,17 +250,11 @@ const APIActionModal = () => {
             <br />
             <br />
           </div>
-          <hr className="actionmodal__verticalline" />
           <div className="actionmodal__content__section2">
-            <ActionContentTwo />
-          </div>
-          <hr className="actionmodal__verticalline" />
-          <div className="actionmodal__content__section3">
             <ActionContentThree content={queryResponse} />
           </div>
         </div>
-      </>
-
+      </div>
       <ReactModal
         isOpen={modalOpened}
         contentLabel={"Save response object"}
@@ -284,7 +281,7 @@ const APIActionModal = () => {
           onClickClose={() => setModalOpened(false)}
         />
       </ReactModal>
-    </div>
+    </>
   );
 };
 
@@ -298,6 +295,7 @@ const DualInput = ({ handleChange, onAdd, onRemove, value }) => {
         placeholder={"Key"}
         value={value.key}
         onChange={handleChange}
+        style={{ width: "75%" }}
       />
       <Spacing width={"10px"} height={"1px"} />
       <TextInput
@@ -305,6 +303,7 @@ const DualInput = ({ handleChange, onAdd, onRemove, value }) => {
         placeholder={"Value"}
         value={value.value}
         onChange={handleChange}
+        style={{ width: "75%" }}
       />
       <Spacing width={"10px"} height={"1px"} />
       <FaPlus className="actionmodal__icons" onClick={onAdd} />
